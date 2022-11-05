@@ -3,6 +3,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.validators import ValidationError
 
 from .models import User
+from django.utils import timezone
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -26,6 +27,7 @@ class SignUpSerializer(serializers.ModelSerializer):
         user = super().create(validated_data)
         user.set_password(password)
         user.is_active = True
+        user.last_login = timezone.now()
         user.save()
         Token.objects.create(user=user)
         return user

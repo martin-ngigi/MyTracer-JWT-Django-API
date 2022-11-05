@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -11,7 +12,10 @@ class CustomUserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.is_active = True
+        user.last_login = timezone.now()
         extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("last_login", timezone.now())
+        # extra_fields.setdefault("last_login", auto_now_add=True)
         user.save()
         return user
 
@@ -31,7 +35,7 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.CharField(max_length=80, unique=True)
     username = models.CharField(max_length=45)
-    date_of_birth = models.DateField(null=True)
+    # date_of_birth = models.DateField(null=True)
     phone = models.CharField(max_length=20)
     backup_phone = models.CharField(max_length=20)
 
