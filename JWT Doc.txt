@@ -1,0 +1,138 @@
+GIthub: https://github.com/jod35/Building-APIS-with-DRF
+Youtube : https://www.youtube.com/watch?v=Dc0blFip6B8
+POSTMAN : Use JWT Django.postman-collection.json
+
+Intall:
+pip install requirements.txt
+
+
+1. POST -> (singup) register account:
+ endpoint -> http://127.0.0.1:8000/auth/signup/
+ chose body then raw then in the text, chose json and paste the following:
+{
+    "email": "martinwainaina001@gmail.com",
+    "username": "martinwainaina001",
+    "phone": "0797292290",
+    "first_name": "Martin",
+    "last_name": "Wainaina",
+    "date_of_birth": "1999-11-23",
+    "password": "12345678",
+    "backup_phone":"0712345678" 
+}
+
+expepected response:
+{
+    "message": "User Created Successfully",
+    "data": {
+        "id": 1,
+        "email": "martinwainaina001@gmail.com",
+        "username": "martinwainaina001",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "Martin",
+        "last_name": "Wainaina",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-05T12:33:04.452989Z",
+        "date_of_birth": "1999-11-23",
+        "phone": "0797292290",
+        "backup_phone": "0712345678",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+
+2. POST ->(create auth token):
+    endpoint -> http://127.0.0.1:8000/auth/jwt/create/
+    chose body then raw then in the text, chose json and paste the following:
+        {
+        "email":"martinwainaina001@gmail.com",
+        "username":"martinwainaina001",
+        "password":"12345678"
+    }
+
+    then click send
+    you will get a result such as:
+            {
+                "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc0OTIyOSwiaWF0IjoxNjY2NjYyODI5LCJqdGkiOiJiMzAyM2E2MGI3NWE0OTllYTVhNDY1MzQyMzliNjZhZCIsInVzZXJfaWQiOjJ9.UihxKMp47p8kMeyVetKd3pBGu4Ui3Ftr5pQG5gGXPq4",
+                "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwMDI5LCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImFlYWU1YzlmNTQyNTRlNjdhNGEyOWU5MTAxNTlkNzk5IiwidXNlcl9pZCI6Mn0.QUolFoN0IC-Uow6bbjZkrwfNPtl-qIVhwvKqHhPvRsA"
+            }
+
+3. POST -> Create a refresh Token:
+EndPoint: http://127.0.0.1:8000/auth/jwt/refresh/
+Copy The Refresh token is the one obtained above.... The reason is; after sometime the access token expires so must create a new access token using the refresh token
+chose body then raw then in the text, chose json and paste the following:
+     {
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc0OTIyOSwiaWF0IjoxNjY2NjYyODI5LCJqdGkiOiJiMzAyM2E2MGI3NWE0OTllYTVhNDY1MzQyMzliNjZhZCIsInVzZXJfaWQiOjJ9.UihxKMp47p8kMeyVetKd3pBGu4Ui3Ftr5pQG5gGXPq4"
+        }
+
+The result will be:
+{
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwNTIwLCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImEwNTRlMWNjZWI0NzRiYzM5Zjc5MjkyYTNiNDYzOGEyIiwidXNlcl9pZCI6Mn0.8dbWENaEBnGDAsdWp7lBL0X3tV500knCvBrChPyT1Xw"
+}
+
+
+
+4. POST -> Verify accesstoken:
+EndPoint -> http://127.0.0.1:8000/auth/jwt/verify/
+The token is the obtained above's result 
+chose body then raw then in the text, chose json and paste the following:
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwNTIwLCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImEwNTRlMWNjZWI0NzRiYzM5Zjc5MjkyYTNiNDYzOGEyIiwidXNlcl9pZCI6Mn0.8dbWENaEBnGDAsdWp7lBL0X3tV500knCvBrChPyT1Xw"
+}
+
+if successful, result will be:
+{}
+
+5. GET - > Retrieve all posts:
+Endpoint: http://127.0.0.1:8000/posts/
+Chose Authorization , Then in Type chose API key Then fill in the following: (Hint: bearer  should be access token)
+        key : Authorization
+        value : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwMDI5LCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImFlYWU1YzlmNTQyNTRlNjdhNGEyOWU5MTAxNTlkNzk5IiwidXNlcl9pZCI6Mn0.QUolFoN0IC-Uow6bbjZkrwfNPtl-qIVhwvKqHhPvRsA
+Then click send.
+Results should be : 
+{
+    "count": 0,
+    "next": null,
+    "previous": null,
+    "results": []
+}
+
+6. POST -> SignUp with email, username, password
+Endpoint -> http://127.0.0.1:8000/auth/signup/
+chose body then raw then in the text, chose json and paste the following:
+
+{
+    "email": "martinwainaina002@gmail.com",
+    "username": "wainaina",
+    "password": "12345678"
+}
+
+Result: {
+    "message": "User Created Successfully",
+    "data": {
+        "email": "martinwainaina002@gmail.com",
+        "username": "wainaina"
+    }
+}
+
+7. POST -> Login
+Endpoint -> http://127.0.0.1:8000/auth/login/
+chose body then raw then in the text, chose json and paste the following:
+
+{
+    "email": "martinwainaina002@gmail.com",
+    "username": "wainaina",
+    "password": "12345678"
+}
+
+
+
+Result: 
+{
+    "message": "Login Successfull",
+    "tokens": {
+        "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2Njc2MDgyLCJpYXQiOjE2NjY2Njg4ODIsImp0aSI6ImUxYjZkNmYwZmUzNzQ4MjVhYWY2MDQ2ZGU4MmNhMGUxIiwidXNlcl9pZCI6M30.TfAU59ig4NlsfN-vPjOhEfgDd3Z9Xh2Elj8KZE6gwLc",
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc1NTI4MiwiaWF0IjoxNjY2NjY4ODgyLCJqdGkiOiI3ZjY5YzAwMjkxMzY0ZTI0OWE1YTU4ZmU4YjE0ODQ3NiIsInVzZXJfaWQiOjN9.32xlQ0kuVUjOqJ5DoDaMJ3FQVDlfP0R5O94hGr5hKI8"
+    }
+}
