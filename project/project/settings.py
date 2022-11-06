@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Created apps
     "accounts",
+    'posts',
     # third-party-apps
     "rest_framework",
     "rest_framework.authtoken",
