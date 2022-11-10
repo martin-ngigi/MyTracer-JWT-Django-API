@@ -53,22 +53,22 @@ expepected response:
 
     then click send
     you will get a result such as:
-            {
-                "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc0OTIyOSwiaWF0IjoxNjY2NjYyODI5LCJqdGkiOiJiMzAyM2E2MGI3NWE0OTllYTVhNDY1MzQyMzliNjZhZCIsInVzZXJfaWQiOjJ9.UihxKMp47p8kMeyVetKd3pBGu4Ui3Ftr5pQG5gGXPq4",
-                "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwMDI5LCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImFlYWU1YzlmNTQyNTRlNjdhNGEyOWU5MTAxNTlkNzk5IiwidXNlcl9pZCI6Mn0.QUolFoN0IC-Uow6bbjZkrwfNPtl-qIVhwvKqHhPvRsA"
-            }
+        {
+            "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2ODE2NTY3NiwiaWF0IjoxNjY4MDc5Mjc2LCJqdGkiOiJmMWE3ZmYxMTlhNTQ0NTc1ODY0NWM2NmVjZThkNTg1ZiIsInVzZXJfaWQiOjF9.cFO87z3vkR-kgkVfZD0Aqafwm-bEIZHA8UXmXSnwkEc",
+            "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4MDg2NDc2LCJpYXQiOjE2NjgwNzkyNzYsImp0aSI6ImY2M2U4ZDkxZTE4NTRlOWI4NjVkZTQ1NmFkMTYzNzk3IiwidXNlcl9pZCI6MX0._q2f24V_KTLHGYb0kENB8QlaVO10h2neq8b-C0PAuHM"
+        }
 
 3. POST -> Create a refresh Token:
 EndPoint: http://127.0.0.1:8000/auth/jwt/refresh/
 Copy The Refresh token is the one obtained above.... The reason is; after sometime the access token expires so must create a new access token using the refresh token
 chose body then raw then in the text, chose json and paste the following:
-     {
-        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc0OTIyOSwiaWF0IjoxNjY2NjYyODI5LCJqdGkiOiJiMzAyM2E2MGI3NWE0OTllYTVhNDY1MzQyMzliNjZhZCIsInVzZXJfaWQiOjJ9.UihxKMp47p8kMeyVetKd3pBGu4Ui3Ftr5pQG5gGXPq4"
-        }
+    {
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2ODE2NTY3NiwiaWF0IjoxNjY4MDc5Mjc2LCJqdGkiOiJmMWE3ZmYxMTlhNTQ0NTc1ODY0NWM2NmVjZThkNTg1ZiIsInVzZXJfaWQiOjF9.cFO87z3vkR-kgkVfZD0Aqafwm-bEIZHA8UXmXSnwkEc"
+    }
 
 The result will be:
 {
-    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwNTIwLCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImEwNTRlMWNjZWI0NzRiYzM5Zjc5MjkyYTNiNDYzOGEyIiwidXNlcl9pZCI6Mn0.8dbWENaEBnGDAsdWp7lBL0X3tV500knCvBrChPyT1Xw"
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4MDg2NTI3LCJpYXQiOjE2NjgwNzkyNzYsImp0aSI6IjA3MWMzOGMwYjZhMTQxZjliNjc0ZTkxNGEyNmUwMmE0IiwidXNlcl9pZCI6MX0.SITz9rFvQKWrrDvfXL4Y4DZOMxeNfYhC3eDNvtF5Hvc"
 }
 
 
@@ -78,11 +78,74 @@ EndPoint -> http://127.0.0.1:8000/auth/jwt/verify/
 The token is the obtained above's result 
 chose body then raw then in the text, chose json and paste the following:
 {
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwNTIwLCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImEwNTRlMWNjZWI0NzRiYzM5Zjc5MjkyYTNiNDYzOGEyIiwidXNlcl9pZCI6Mn0.8dbWENaEBnGDAsdWp7lBL0X3tV500knCvBrChPyT1Xw"
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4MDg2NTI3LCJpYXQiOjE2NjgwNzkyNzYsImp0aSI6IjA3MWMzOGMwYjZhMTQxZjliNjc0ZTkxNGEyNmUwMmE0IiwidXNlcl9pZCI6MX0.SITz9rFvQKWrrDvfXL4Y4DZOMxeNfYhC3eDNvtF5Hvc"
 }
 
 if successful, result will be:
 {}
+
+6. Create Post
+enpoint -> http://127.0.0.1:8000/posts/
+Chose Authorization , Then in Type chose API key Then fill in the following: (Hint: bearer  should be access token)
+        key : Authorization
+        value : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2NjcwMDI5LCJpYXQiOjE2NjY2NjI4MjksImp0aSI6ImFlYWU1YzlmNTQyNTRlNjdhNGEyOWU5MTAxNTlkNzk5IiwidXNlcl9pZCI6Mn0.QUolFoN0IC-Uow6bbjZkrwfNPtl-qIVhwvKqHhPvRsA
+
+body :
+{
+    "title":"Title 1",
+    "content": "My content"
+    
+}
+
+5. LOGIN
+5.1 Login only with a token result:
+endpoint -> http://127.0.0.1:8000/auth/login/
+body :
+{
+    "email": "martinwainaina@gmail.com",
+    "username": "wainaina",
+    "password": "12345678"
+}
+
+result:
+{
+    "message": "Login Successfull",
+    "tokens": {
+        "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4MDg3NDg0LCJpYXQiOjE2NjgwODAyODQsImp0aSI6ImUxMDYxY2Q4NjFjNzQ0YWViMmIyMjQ3YmE1NmM2YTg5IiwidXNlcl9pZCI6MX0.nFrB3rgONe5WtJ4bX7E7GkvcsfBSDH0J58qD7HvVfoQ",
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2ODE2NjY4NCwiaWF0IjoxNjY4MDgwMjg0LCJqdGkiOiI1ZjI5NWE4YTliZDE0MDBhOGZmOWVmMDVhNmI2ZGQ5MSIsInVzZXJfaWQiOjF9.2aZ_LUzTroKj-aNWz-s1mET0zdgBTLyRwOkkFf9iyMI"
+    }
+}
+
+5.2 Login (Token + user data as results)
+endpoint -> http://127.0.0.1:8000/auth/login/
+body :
+{
+    "email": "martinwainaina@gmail.com",
+    "username": "wainaina",
+    "password": "12345678"
+}
+
+result:
+
+{
+    "message": "Login Successful",
+    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2ODE2NjgxNiwiaWF0IjoxNjY4MDgwNDE2LCJqdGkiOiIzYmYxMWZlM2I5YmY0NjcyYmQ1MmMzNzMyNzdkZmM3NSIsInVzZXJfaWQiOjF9.k9ek3RIlmwFV4-hJC7uNIDr5BS2bWciWkI1zjZYGytE",
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4MDg3NjE2LCJpYXQiOjE2NjgwODA0MTYsImp0aSI6IjI4MzBhZDZmMGI3ZDRhMjlhZjc0ZDU4ZmY3NDQxYjEyIiwidXNlcl9pZCI6MX0.26Zup5fY59VHIuv1iP5wOBDz7v_lYGs0G3FFWaXty-E",
+    "user": {
+        "id": 1,
+        "first_name": "Martin",
+        "last_name": "Wainaina",
+        "email": "martinwainaina@gmail.com",
+        "date_of_birth": null,
+        "password": "pbkdf2_sha256$320000$LW1GqLjaKqGT9RmtPncwxw$3VgaYl07Psc4h0BGuBfZ1ih7TuVeBkCV2jjVEJyk2pw=",
+        "last_login": "2022-11-10T11:40:16.459861Z",
+        "is_superuser": false,
+        "is_active": true,
+        "date_joined": "2022-11-10T11:19:15.286000Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
 
 5. GET - > Retrieve all posts:
 Endpoint: http://127.0.0.1:8000/posts/
@@ -96,43 +159,4 @@ Results should be :
     "next": null,
     "previous": null,
     "results": []
-}
-
-6. POST -> SignUp with email, username, password
-Endpoint -> http://127.0.0.1:8000/auth/signup/
-chose body then raw then in the text, chose json and paste the following:
-
-{
-    "email": "martinwainaina002@gmail.com",
-    "username": "wainaina",
-    "password": "12345678"
-}
-
-Result: {
-    "message": "User Created Successfully",
-    "data": {
-        "email": "martinwainaina002@gmail.com",
-        "username": "wainaina"
-    }
-}
-
-7. POST -> Login
-Endpoint -> http://127.0.0.1:8000/auth/login/
-chose body then raw then in the text, chose json and paste the following:
-
-{
-    "email": "martinwainaina002@gmail.com",
-    "username": "wainaina",
-    "password": "12345678"
-}
-
-
-
-Result: 
-{
-    "message": "Login Successfull",
-    "tokens": {
-        "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2Njc2MDgyLCJpYXQiOjE2NjY2Njg4ODIsImp0aSI6ImUxYjZkNmYwZmUzNzQ4MjVhYWY2MDQ2ZGU4MmNhMGUxIiwidXNlcl9pZCI6M30.TfAU59ig4NlsfN-vPjOhEfgDd3Z9Xh2Elj8KZE6gwLc",
-        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc1NTI4MiwiaWF0IjoxNjY2NjY4ODgyLCJqdGkiOiI3ZjY5YzAwMjkxMzY0ZTI0OWE1YTU4ZmU4YjE0ODQ3NiIsInVzZXJfaWQiOjN9.32xlQ0kuVUjOqJ5DoDaMJ3FQVDlfP0R5O94hGr5hKI8"
-    }
 }

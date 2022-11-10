@@ -9,14 +9,16 @@ from django.utils import timezone
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
+
         user = self.model(email=email, **extra_fields)
-        user.set_password(password)
         user.is_active = True
         user.last_login = timezone.now()
         extra_fields.setdefault("is_active", True)
         extra_fields.setdefault("last_login", timezone.now())
-        # extra_fields.setdefault("last_login", auto_now_add=True)
+        user.set_password(password)
+
         user.save()
+
         return user
 
     def create_superuser(self, email, password, **extra_fields):
@@ -35,7 +37,7 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.CharField(max_length=80, unique=True)
     username = models.CharField(max_length=45)
-    # date_of_birth = models.DateField(null=True)
+    date_of_birth = models.DateField(null=True)
     phone = models.CharField(max_length=20)
     backup_phone = models.CharField(max_length=20)
 
@@ -44,4 +46,4 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
-        return self.username
+        return self.username+' '+self.email
