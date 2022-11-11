@@ -90,6 +90,8 @@ class TokenObtainPairSerializer(TokenObtainSerializer):
                 "last_name": self.user.last_name,
                 "email": self.user.email,
                 "date_of_birth": self.user.date_of_birth,
+                "phone": self.user.phone,
+                "backup_phone": self.user.backup_phone,
                 "password": self.user.password,
 
                 "last_login": timezone.now(),
